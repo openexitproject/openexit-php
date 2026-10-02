@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openexit.dev/pasp/1.0/schemas/resource.schema.json",
+  "title": "PASP Resource",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "schema", "identity", "recordCount", "chunks"],
+  "properties": {
+    "name": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$" },
+    "schema": { "oneOf": [{ "type": "string", "pattern": "^schemas/[A-Za-z0-9._/-]+\\.schema\\.json$" }, { "type": "object" }] },
+    "schemaId": { "type": "string", "minLength": 1 },
+    "schemaVersion": { "type": "string", "minLength": 1 },
+    "identity": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "recordCount": { "type": "integer", "minimum": 0 },
+    "chunks": { "type": "array", "items": { "$ref": "resource-chunk.schema.json" } },
+    "ordered": { "type": "boolean" },
+    "metadata": { "type": "object" },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "snapshotToken": { "type": "string" }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openexit.dev/pasp/1.0/schemas/resource-chunk.schema.json",
+  "title": "PASP Resource Chunk",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sequence", "path", "recordCount", "uncompressedBytes", "sha256"],
+  "properties": {
+    "sequence": { "type": "integer", "minimum": 1 },
+    "path": { "type": "string", "pattern": "^resources/[A-Za-z0-9][A-Za-z0-9._-]{0,127}/[0-9]{8}\\.ndjson$" },
+    "recordCount": { "type": "integer", "minimum": 0 },
+    "uncompressedBytes": { "type": "integer", "minimum": 0 },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "firstIdentity": {},
+    "lastIdentity": {},
+    "completedAt": { "type": "string", "format": "date-time" }
+  }
+}
+
+

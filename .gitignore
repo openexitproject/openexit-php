@@ -1,0 +1,6 @@
+/vendor/
+/.phpunit.cache/
+/coverage/
+/composer.lock
+/dist/
+/auth.json

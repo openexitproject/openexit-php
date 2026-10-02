@@ -1,0 +1,4 @@
+tests export-ignore
+phpunit.xml export-ignore
+IMPLEMENTATION_NOTES.md export-ignore
+.gitattributes export-ignore

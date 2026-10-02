@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openexit.dev/pasp/1.0/schemas/inspection-result.schema.json",
+  "title": "PASP Inspection Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["valid", "paspVersion", "resources", "assets", "errors"],
+  "properties": {
+    "valid": { "type": "boolean" },
+    "paspVersion": { "type": "string" },
+    "resources": { "type": "integer", "minimum": 0 },
+    "assets": { "type": "integer", "minimum": 0 },
+    "errors": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["code", "message"], "properties": { "code": { "type": "string", "pattern": "^PASP_[A-Z0-9_]+$" }, "message": { "type": "string" }, "path": { "type": "string" } } } }
+  }
+}

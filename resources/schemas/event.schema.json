@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openexit.dev/pasp/1.0/schemas/event.schema.json",
+  "title": "PASP Adapter Event",
+  "type": "object",
+  "required": ["type"],
+  "properties": {
+    "type": { "enum": ["export_begin", "resource_begin", "schema", "record", "checkpoint", "relationship", "asset", "resource_end", "export_end"] },
+    "scope": { "$ref": "scope.schema.json" },
+    "resource": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$" },
+    "schema": { "type": "object" },
+    "schemaRef": { "type": "string" },
+    "value": {},
+    "relationship": { "$ref": "relationship.schema.json" },
+    "asset": { "$ref": "asset.schema.json" }
+  },
+  "allOf": [
+    { "if": { "properties": { "type": { "const": "export_begin" } } }, "then": { "required": ["scope"] } },
+    { "if": { "properties": { "type": { "enum": ["resource_begin", "resource_end", "schema", "record", "checkpoint"] } } }, "then": { "required": ["resource"] } },
+    { "if": { "properties": { "type": { "const": "record" } } }, "then": { "required": ["value"] } },
+    { "if": { "properties": { "type": { "const": "checkpoint" } } }, "then": { "required": ["value"] } },
+    { "if": { "properties": { "type": { "const": "relationship" } } }, "then": { "required": ["relationship"] } },
+    { "if": { "properties": { "type": { "const": "asset" } } }, "then": { "required": ["asset"] } }
+  ]
+}

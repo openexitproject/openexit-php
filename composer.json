@@ -1,0 +1,27 @@
+{
+  "name": "openexit/openexit",
+  "description": "OpenExit SDK for the Portable Application State Protocol (PASP)",
+  "type": "library",
+  "license": "MIT",
+  "require": {"php": ">=8.2", "opis/json-schema": "^2.6"},
+  "require-dev": {"phpunit/phpunit": "^11.0"},
+  "autoload": {"psr-4": {"OpenExit\\": "src/"}, "files": ["src/Model/Models.php"]},
+  "autoload-dev": {"psr-4": {"OpenExit\\Tests\\": "tests/"}},
+  "archive": {
+    "exclude": [
+      "/.gitattributes",
+      "/.gitignore",
+      "/.phpunit.cache/",
+      "/composer.lock",
+      "/dist/",
+      "/IMPLEMENTATION_NOTES.md",
+      "/phpunit.xml",
+      "/tests/",
+      "/vendor/"
+    ]
+  },
+  "scripts": {"test": "phpunit", "check": ["@test"]},
+  "config": {"sort-packages": true, "allow-plugins": {}},
+  "keywords": ["openexit", "pasp", "data-portability", "json-schema"],
+  "support": {"issues": "https://github.com/openexitproject/openexit/issues"}
+}

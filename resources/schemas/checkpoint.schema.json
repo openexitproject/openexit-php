@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openexit.dev/pasp/1.0/schemas/checkpoint.schema.json",
+  "title": "PASP Checkpoint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["resource", "value"],
+  "properties": {
+    "resource": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$" },
+    "value": {}
+  }
+}

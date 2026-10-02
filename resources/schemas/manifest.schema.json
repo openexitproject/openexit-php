@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openexit.dev/pasp/1.0/schemas/manifest.schema.json",
+  "title": "PASP Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "paspVersion", "packageId", "exportId", "createdAt", "producer", "scope", "consistency", "resources", "assets", "integrity"],
+  "properties": {
+    "format": { "const": "openexit.bundle" },
+    "paspVersion": { "const": "1.0" },
+    "packageId": { "type": "string", "minLength": 1 },
+    "exportId": { "type": "string", "minLength": 1 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "producer": { "type": "object", "additionalProperties": false, "required": ["name", "version"], "properties": { "name": { "type": "string", "minLength": 1 }, "version": { "type": "string", "minLength": 1 } } },
+    "scope": { "$ref": "scope.schema.json" },
+    "consistency": { "type": "object", "additionalProperties": false, "required": ["level"], "properties": { "level": { "enum": ["snapshot", "bounded", "best_effort"] }, "metadata": { "type": "object" } } },
+    "resources": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["name", "descriptor"], "properties": { "name": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$" }, "descriptor": { "type": "string", "pattern": "^resources/[A-Za-z0-9][A-Za-z0-9._-]{0,127}/resource\\.json$" } } } },
+    "assets": { "type": "object", "additionalProperties": false, "required": ["count", "totalBytes"], "properties": { "count": { "type": "integer", "minimum": 0 }, "totalBytes": { "type": "integer", "minimum": 0 }, "index": { "type": "string", "const": "assets/index.ndjson" } } },
+    "integrity": { "type": "object", "additionalProperties": false, "required": ["algorithm"], "properties": { "algorithm": { "const": "sha256" }, "checksums": { "type": "string", "const": "checksums.sha256" } } },
+    "relationships": { "type": "string", "const": "relationships.json" }
+  }
+}

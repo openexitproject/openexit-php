@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openexit.dev/pasp/1.0/schemas/scope.schema.json",
+  "title": "PASP Scope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["type", "id"],
+  "properties": {
+    "type": { "type": "string", "minLength": 1 },
+    "id": { "type": "string", "minLength": 1 },
+    "metadata": { "type": "object" }
+  }
+}

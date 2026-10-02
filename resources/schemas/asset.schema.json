@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openexit.dev/pasp/1.0/schemas/asset.schema.json",
+  "title": "PASP Asset",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "path", "sha256", "byteLength"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "path": { "type": "string", "pattern": "^assets/objects/[A-Za-z0-9][A-Za-z0-9._/-]*$" },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "byteLength": { "type": "integer", "minimum": 0 },
+    "name": { "type": "string" },
+    "mediaType": { "type": "string" },
+    "metadata": { "type": "object" }
+  }
+}
